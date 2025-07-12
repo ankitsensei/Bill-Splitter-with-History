@@ -1,7 +1,7 @@
-##🧩 Problem It Solves:
+# 🧩 Problem It Solves:
 When friends live together or go on trips, splitting bills fairly becomes confusing.
 
-🛠 Features:
+## 🛠 Features:
 Add people (friends/roommates)
 
 Add expenses with:
@@ -18,7 +18,7 @@ Maintain a history log of expenses
 
 Store data in localStorage
 
-🔧 React Concepts:
+## 🔧 React Concepts:
 useState, useEffect
 
 Controlled inputs
