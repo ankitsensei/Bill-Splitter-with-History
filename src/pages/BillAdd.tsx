@@ -13,27 +13,43 @@ const BillAdd = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2 w-full mt-10">
                 <div>
                     <label htmlFor="">Money spent on?</label>
-                    <input type="text" {...register("example")} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Money spent on?" />
+                    <input type="text" {...register("example")} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Street food" />
                 </div>
 
                 <div className="flex gap-2">
                     <div>
                         <label htmlFor="">How much?</label>
-                        <input type="number" {...register("example")} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="How much?" />
+                        <input type="number" {...register("example")} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="300" />
                     </div>
                     <div>
                         <label htmlFor="">When?</label>
-                        <input type="date" defaultValue={today} {...register("example")} className="border-zinc-600  border-2 p-2 rounded w-full outline-none" placeholder="When?" />
+                        <input type="date" defaultValue={today} {...register("example")} className="border-zinc-600  border-2 p-2 rounded w-full outline-none" />
                     </div>
                 </div>
-                <div className="flex gap-2">
-                    <div className="flex flex-col">
-                        <label htmlFor="">Number of people?</label>
-                        <input type="number" {...register("example")} className="border-zinc-600 border-2 p-2 rounded w-50 outline-none" placeholder="Number of people?" />
-                    </div>
+
+                <div>
+                    <label htmlFor="">No. of person?</label>
+                    <input type="number" {...register("example")} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="3" />
+                </div>
+                <div>
+                    <label htmlFor="">Name of Persons</label>
+
+                    <input type="text" {...register("example")} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Ankit" />
+                    <input type="text" {...register("example")} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Shyam" />
+                    <input type="text" {...register("example")} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Rohit" />
+                </div>
+                <div>
+                    <label htmlFor="">Who paid?</label>
+                    <select id="whoPaid" {...register("whoPaid")} className="border-zinc-600 bg-black text-white border-2 p-2 rounded w-full outline-none"
+                    >
+                        <option value="Ankit">Ankit</option>
+                        <option value="Shyam">Shyam</option>
+                        <option value="Rohit">Rohit</option>
+                    </select>
                 </div>
             </form>
             {errors.exampleRequired && <span>This field is required</span>}
+            <p className="text-center">Each person will pay <span className="font-semibold underline">Rs.100</span> to <span className="font-semibold underline">Ankit</span>.</p>
             <input type="submit" className="px-20 py-2 bg-white text-black rounded" />
         </div>
     )
