@@ -11,10 +11,10 @@ const BillAdd = () => {
     console.log(watch("example"));
 
     return (
-        <div className="my-6 px-4 h-screen flex flex-col justify-start w-full sm:w-[450px] md:w-[450px] lg:w-[450px]">
+        <div className="my-6 px-4 h-screen flex flex-col w-full sm:w-[450px] md:w-[450px] lg:w-[450px]">
             <Link to="/"><button className="text-start underline hover:cursor-grab">back</button></Link>
-            <div className="mt-10">
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-full mt-10">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full h-full justify-between">
+                <div className="flex flex-col gap-4  w-full mt-15">
                     <div>
                         <label htmlFor="">Money spent on?</label>
                         <input type="text" {...register("example")} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Street food" />
@@ -50,11 +50,11 @@ const BillAdd = () => {
                             <option value="Rohit">Rohit</option>
                         </select>
                     </div>
-                </form>
+                </div>
                 {errors.exampleRequired && <span>This field is required</span>}
                 <p className="text-center">Each person will pay <span className="font-semibold underline">Rs.100</span> to <span className="font-semibold underline">Ankit</span>.</p>
                 <input type="submit" className="px-20 py-2 bg-white text-black rounded" />
-            </div>
+            </form>
         </div>
     )
 }
