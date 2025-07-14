@@ -23,12 +23,23 @@ const BillAdd = () => {
 
     const [noOfPerson, setnoOfPerson] = useState(0);
     const [nameOfPerson, setNameOfPerson] = useState<string[]>([]);
+    const whoPaid = watch("whoPaid");
+    const howMuch = watch("howMuch");
+    const [individualBill, setIndividualBill] = useState<number>(0);
 
     const handleChange = (value: string, index: number) => {
         const updatedNames = [...nameOfPerson];
         updatedNames[index] = value;
         setNameOfPerson(updatedNames);
     }
+
+    useEffect(() => {
+        if (noOfPerson > 0) {
+            setIndividualBill(howMuch/noOfPerson);
+        }
+    }, [howMuch, noOfPerson])
+
+
 
     useEffect(() => {
         setValue("nameOfPersons", nameOfPerson);
@@ -59,7 +70,6 @@ const BillAdd = () => {
                         <div>
                             <label htmlFor="">No. of ppl?</label>
                             <input type="number" {...register("noOfPpl", { required: true })} value={noOfPerson} onChange={(e) => setnoOfPerson(parseInt(e.target.value))} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="3" />
-
                             {errors.noOfPpl && <span>This field is required</span>}
                         </div>
                     </div>
@@ -99,7 +109,10 @@ const BillAdd = () => {
 
                     </div>
                 </div>
-                <p className="text-center">Each person will pay <span className="font-semibold underline">Rs.100</span> to <span className="font-semibold underline">Ankit</span>.</p>
+                {
+                    (whoPaid) &&
+                    <p className="text-center">Each person will pay <span className="font-semibold underline">{individualBill}</span> to <span className="font-semibold underline">{whoPaid}</span>.</p>
+                }
                 <input type="submit" className="px-20 py-2 bg-white text-black rounded" />
             </form>
         </div>
