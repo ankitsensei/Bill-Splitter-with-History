@@ -12,6 +12,7 @@ type Inputs = {
     nameOfPersons: Array<string>,
     whoPaid: string,
     noOfPerson: number,
+    individualBill: number,
 };
 
 
@@ -43,7 +44,8 @@ const BillAdd = () => {
 
     useEffect(() => {
         setValue("nameOfPersons", nameOfPerson);
-    }, [nameOfPerson, setValue]);
+        setValue("individualBill", individualBill);
+    }, [nameOfPerson, individualBill, setValue]);
 
 
     return (
