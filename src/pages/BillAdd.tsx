@@ -71,7 +71,7 @@ const BillAdd = () => {
                             }
                         </select>
                         {
-                            listOfPerson.length > noOfPerson && <p className='text-red-500'>This cannot be</p>
+                            listOfPerson.length > noOfPerson && <p className='text-red-500'>No. of ppl does not match the no. of names</p>
                         }
                     </div>
                 </div>
