@@ -50,15 +50,20 @@ const BillAdd = () => {
                         <div>
                             <label htmlFor="">No. of ppl?</label>
                             <input type="number" {...register("noOfPpl", { required: true })} value={noOfPerson} onChange={(e) => setnoOfPerson(parseInt(e.target.value))} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="3" />
-                            
+
                             {errors.noOfPpl && <span>This field is required</span>}
                         </div>
                     </div>
 
                     <div>
                         <label htmlFor="">Name of Persons</label>
+                        {
+                            Array.from({ length: noOfPerson }).map((_, index) => (
+                                <input type="text" key={index} placeholder={`Person ${index + 1}`} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" />
+                            ))
+                        }
+                        {/* <input type="text" {...register("nameOfPersons", { required: true })} value={listOfPerson.join(', ')} onChange={(e) => setListOfPerson(e.target.value.split(', '))} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Ankit, Shyam, Rohit" /> */}
 
-                        <input type="text" {...register("nameOfPersons", { required: true })} value={listOfPerson.join(', ')} onChange={(e) => setListOfPerson(e.target.value.split(', '))} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Ankit, Shyam, Rohit" />
                     </div>
                     <div>
                         <label htmlFor="">Who paid?</label>
