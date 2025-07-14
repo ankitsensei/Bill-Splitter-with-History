@@ -67,7 +67,7 @@ const BillAdd = () => {
                     <div>{
                         noOfPerson > 0 &&
                         <label htmlFor="">Name of Persons</label>
-                        }
+                    }
                         {
                             Array.from({ length: noOfPerson }).map((_, index) => (
                                 <input
@@ -80,19 +80,23 @@ const BillAdd = () => {
                             ))
                         }
                     </div>
-                    <div>
-                        <label htmlFor="">Who paid?</label>
-                        <select id="whoPaid" {...register("whoPaid", { required: true })} className="border-zinc-600 bg-black text-white border-2 p-2 rounded w-full outline-none"
-                        >
+                    <div>{
+                        (nameOfPerson.length === noOfPerson && noOfPerson > 0) && <div>
+                            <label htmlFor="">Who paid?</label>
+                            <select id="whoPaid" {...register("whoPaid", { required: true })} className="border-zinc-600 bg-black text-white border-2 p-2 rounded w-full outline-none"
+                            >
+                                {
+                                    nameOfPerson.map((name, index) => (
+                                        <option key={index} value={name}>{name}</option>
+                                    ))
+                                }
+                            </select>
                             {
-                                nameOfPerson.map((name, index) => (
-                                    <option key={index} value={name}>{name}</option>
-                                ))
+                                nameOfPerson.length > noOfPerson && <p className='text-red-500'>No. of ppl does not match the no. of names</p>
                             }
-                        </select>
-                        {
-                            nameOfPerson.length > noOfPerson && <p className='text-red-500'>No. of ppl does not match the no. of names</p>
-                        }
+                        </div>
+                    }
+
                     </div>
                 </div>
                 <p className="text-center">Each person will pay <span className="font-semibold underline">Rs.100</span> to <span className="font-semibold underline">Ankit</span>.</p>
