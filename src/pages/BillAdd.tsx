@@ -11,7 +11,8 @@ type Inputs = {
     noOfPpl: number,
     nameOfPersons: Array<string>,
     whoPaid: string,
-    noOfPerson: Array<string>,
+    listOfPerson: Array<string>,
+    noOfPerson: number,
 };
 
 
@@ -21,7 +22,8 @@ const BillAdd = () => {
 
     const today = new Date().toISOString().split('T')[0];
 
-    const [listOfPerson, setListOfPerson] = useState([]);
+    const [listOfPerson, setListOfPerson] = useState<string[]>([]);
+    const [noOfPerson, setnoOfPerson] = useState(0);
 
     // console.log(watch("spentOn"));
     console.log(listOfPerson);
@@ -49,7 +51,8 @@ const BillAdd = () => {
                         </div>
                         <div>
                             <label htmlFor="">No. of ppl?</label>
-                            <input type="number" {...register("noOfPpl", { required: true })} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="3" />
+                            <input type="number" {...register("noOfPpl", { required: true })} value={noOfPerson} onChange={(e) => setnoOfPerson(parseInt(e.target.value))} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="3" />
+                            
                             {errors.noOfPpl && <span>This field is required</span>}
                         </div>
                     </div>
@@ -69,6 +72,9 @@ const BillAdd = () => {
                                 ))
                             }
                         </select>
+                        {
+                            listOfPerson.length > noOfPerson && <p className='text-red-500'>This cannot be</p>
+                        }
                         {errors.whoPaid && <span>This field is required</span>}
                     </div>
                 </div>
