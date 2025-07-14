@@ -25,8 +25,6 @@ const BillAdd = () => {
     const [listOfPerson, setListOfPerson] = useState<string[]>([]);
     const [noOfPerson, setnoOfPerson] = useState(0);
 
-    // console.log(watch("spentOn"));
-    console.log(listOfPerson);
 
     return (
         <div className="my-6 px-4 h-screen flex flex-col w-full sm:w-[450px] md:w-[450px] lg:w-[450px]">
@@ -75,7 +73,6 @@ const BillAdd = () => {
                         {
                             listOfPerson.length > noOfPerson && <p className='text-red-500'>This cannot be</p>
                         }
-                        {errors.whoPaid && <span>This field is required</span>}
                     </div>
                 </div>
                 <p className="text-center">Each person will pay <span className="font-semibold underline">Rs.100</span> to <span className="font-semibold underline">Ankit</span>.</p>
