@@ -21,10 +21,10 @@ const BillAdd = () => {
 
     const today = new Date().toISOString().split('T')[0];
 
-    const [noOfPerson, setNoOfPerson] = useState(["Ankit", "Shyam", "Rohit"]);
+    const [listOfPerson, setListOfPerson] = useState(["Ankit", "Shyam", "Rohit"]);
 
-    console.log(watch("spentOn"));
-
+    // console.log(watch("spentOn"));
+    console.log(listOfPerson);
 
     return (
         <div className="my-6 px-4 h-screen flex flex-col w-full sm:w-[450px] md:w-[450px] lg:w-[450px]">
@@ -57,14 +57,14 @@ const BillAdd = () => {
                     <div>
                         <label htmlFor="">Name of Persons</label>
 
-                        <input type="text" {...register("nameOfPersons", { required: true })} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Ankit, Shyam, Rohit" />
+                        <input type="text" {...register("nameOfPersons", { required: true })} value={listOfPerson.join(', ')} onChange={(e) => setListOfPerson(e.target.value.split(', '))} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Ankit, Shyam, Rohit" />
                     </div>
                     <div>
                         <label htmlFor="">Who paid?</label>
                         <select id="whoPaid" {...register("whoPaid", { required: true })} className="border-zinc-600 bg-black text-white border-2 p-2 rounded w-full outline-none"
                         >
                             {
-                                noOfPerson.map((name, index) => (
+                                listOfPerson.map((name, index) => (
                                     <option key={index} value={name}>{name}</option>
                                 ))
                             }
