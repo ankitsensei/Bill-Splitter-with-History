@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Link } from "react-router";
 import { useForm, } from "react-hook-form";
@@ -11,19 +11,28 @@ type Inputs = {
     noOfPpl: number,
     nameOfPersons: Array<string>,
     whoPaid: string,
-    listOfPerson: Array<string>,
     noOfPerson: number,
 };
 
 
 const BillAdd = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
 
     const today = new Date().toISOString().split('T')[0];
 
-    const [listOfPerson, setListOfPerson] = useState<string[]>([]);
     const [noOfPerson, setnoOfPerson] = useState(0);
+    const [nameOfPerson, setNameOfPerson] = useState<string[]>([]);
+
+    const handleChange = (value: string, index: number) => {
+        const updatedNames = [...nameOfPerson];
+        updatedNames[index] = value;
+        setNameOfPerson(updatedNames);
+    }
+
+    useEffect(() => {
+        setValue("nameOfPersons", nameOfPerson);
+    }, [nameOfPerson, setValue]);
 
 
     return (
@@ -55,28 +64,34 @@ const BillAdd = () => {
                         </div>
                     </div>
 
-                    <div>
+                    <div>{
+                        noOfPerson > 0 &&
                         <label htmlFor="">Name of Persons</label>
+                        }
                         {
                             Array.from({ length: noOfPerson }).map((_, index) => (
-                                <input type="text" key={index} placeholder={`Person ${index + 1}`} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" />
+                                <input
+                                    type="text"
+                                    key={index}
+                                    placeholder={`Person ${index + 1}`}
+                                    value={nameOfPerson[index] || ""}
+                                    onChange={(e) => handleChange(e.target.value, index)}
+                                    className="border-zinc-600 border-2 p-2 rounded w-full outline-none" />
                             ))
                         }
-                        {/* <input type="text" {...register("nameOfPersons", { required: true })} value={listOfPerson.join(', ')} onChange={(e) => setListOfPerson(e.target.value.split(', '))} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Ankit, Shyam, Rohit" /> */}
-
                     </div>
                     <div>
                         <label htmlFor="">Who paid?</label>
                         <select id="whoPaid" {...register("whoPaid", { required: true })} className="border-zinc-600 bg-black text-white border-2 p-2 rounded w-full outline-none"
                         >
                             {
-                                listOfPerson.map((name, index) => (
+                                nameOfPerson.map((name, index) => (
                                     <option key={index} value={name}>{name}</option>
                                 ))
                             }
                         </select>
                         {
-                            listOfPerson.length > noOfPerson && <p className='text-red-500'>No. of ppl does not match the no. of names</p>
+                            nameOfPerson.length > noOfPerson && <p className='text-red-500'>No. of ppl does not match the no. of names</p>
                         }
                     </div>
                 </div>
