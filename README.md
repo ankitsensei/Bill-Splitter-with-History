@@ -2,17 +2,17 @@
 When friends live together or go on trips, splitting bills fairly becomes confusing.
 
 ## 🛠 Features:
-Add people (friends/roommates)
+Add people (friends/roommates) ✅
 
 Add expenses with:
 
-Who paid?
+Who paid? ✅
 
-Total amount
+Total amount ✅
 
-Who shared it?
+Who shared it? 
 
-See who owes how much to whom
+See who owes how much to whom 
 
 Maintain a history log of expenses
 
