@@ -21,7 +21,7 @@ const BillAdd = () => {
 
     const today = new Date().toISOString().split('T')[0];
 
-    const [listOfPerson, setListOfPerson] = useState(["Ankit", "Shyam", "Rohit"]);
+    const [listOfPerson, setListOfPerson] = useState([]);
 
     // console.log(watch("spentOn"));
     console.log(listOfPerson);
