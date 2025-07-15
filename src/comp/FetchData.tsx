@@ -1,10 +1,20 @@
 import { useEffect, useState } from 'react';
 import { supabase } from "../supabaseClient";
 
+interface BillHistoryItem {
+    spentOn: string;
+    howMuch: number;
+    when: string;
+    noOfPpl: number;
+    nameOfPersons: string[];
+    whoPaid: string;
+    noOfPerson: number;
+    individualBill: number;
+}
 
 
 const FetchData = () => {
-    const [data, setData] = useState<any[]>([]);
+    const [data, setData] = useState<BillHistoryItem[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -20,6 +30,8 @@ const FetchData = () => {
         }
         fetchFromSupabase();
     }, [])
+
+    console.log(data);
 
     if (loading) return <p>Loading...</p>;
     return (
