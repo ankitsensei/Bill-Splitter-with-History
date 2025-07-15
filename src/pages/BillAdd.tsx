@@ -76,7 +76,7 @@ const BillAdd = () => {
                         </div>
                     </div>
 
-                    <div>{
+                    <div className='flex flex-col gap-1'>{
                         noOfPerson > 0 &&
                         <label htmlFor="">Name of Persons</label>
                     }
