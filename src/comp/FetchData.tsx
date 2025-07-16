@@ -45,7 +45,7 @@ const FetchData = () => {
                                 <li className='text-4xl text-center'>-₹{item.howMuch}</li>
                                 <div className='flex justify-between px-2'>
                                     <li><span>{item.moneySpentOn}</span></li>
-                                    <li className='text-end'>{item.when}</li>
+                                    <li className='text-end text-zinc-100'>{item.when}</li>
                                 </div>
 
                             </div>
