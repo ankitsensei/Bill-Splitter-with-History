@@ -7,7 +7,9 @@ const App = () => {
 
   return (
     <div className="w-full h-screen flex flex-col items-center ">
-      <h1 className='text-3xl lg:text-5xl text-center mt-10 font-semibold'>
+      <h1 className='text-3xl lg:text-5xl text-center mt-10 font-semibold text-transparent bg-clip-text 
+                 bg-gradient-to-r from-purple-600 via-purple-300 to-purple-900 
+                 animate-rainbow'>
         Bill Splitter
       </h1>
         <Routes>
