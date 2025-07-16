@@ -5,7 +5,7 @@ type Props = {
 
 const Btn = (props: Props) => {
     return (
-        <div className="text-2xl bg-white px-8 py-2 flex flex-col justify-center items-center text-black rounded hover:cursor-default">{props.title}</div>
+        <div className="text-2xl bg-white px-8 py-2 w-full flex flex-col justify-center items-center text-black rounded hover:cursor-default">{props.title}</div>
     )
 }
 

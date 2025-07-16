@@ -39,7 +39,7 @@ const FetchData = () => {
             <h2 className='text-4xl pb-2'>Expense:</h2>
             {
                 data.map((item) => (
-                    <ul className='border-zinc-400 border-1 p-2 rounded-2xl'>
+                    <ul className='border-zinc-800 border-1 p-2 rounded-2xl'>
                         <div className='text-zinc-400 flex flex-col gap-1'>
                             <div className='bg-purple-800 text-white py-2 rounded-t-xl'>
                                 <li className='text-4xl text-center'>-₹{item.howMuch}</li>
