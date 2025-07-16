@@ -36,7 +36,9 @@ const BillAdd = () => {
 
     useEffect(() => {
         if (noOfPerson > 0) {
-            setIndividualBill(howMuch/noOfPerson);
+            const perPerson = howMuch/noOfPerson;
+            const rounded = Math.round(perPerson * 100)/100;
+            setIndividualBill(rounded);
         }
     }, [howMuch, noOfPerson])
 
