@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 
 import { Link } from "react-router";
-import { useForm, } from "react-hook-form";
-// import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm} from "react-hook-form";
+import type { SubmitHandler} from "react-hook-form";
+
 
 type Inputs = {
     spentOn: string,
