@@ -8,7 +8,7 @@ const Hero = () => {
             <div className="">
                 <BillHistory />
             </div>
-            <Link to="/billadd"><Btn title="+" /></Link>
+            <Link to="/billadd" className="w-full px-4 absolute bottom-4 sticky"><Btn title="+" /></Link>
         </div>
     )
 }
