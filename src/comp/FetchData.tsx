@@ -35,7 +35,7 @@ const FetchData = () => {
 
     if (loading) return <p>Loading...</p>;
     return (
-        <div className='w-lvw lg:w-full px-4 flex flex-col gap-2'>
+        <div className='w-lvw sm:w-[450px] md:w-[450px] lg:w-[450px] px-4 flex flex-col gap-2'>
             <h2 className='text-4xl pb-2'>Expense:</h2>
             {
                 data.map((item) => (
