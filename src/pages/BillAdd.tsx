@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 
 import { Link } from "react-router";
-import { useForm} from "react-hook-form";
-import type { SubmitHandler} from "react-hook-form";
+import { useForm } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
+import { supabase } from "../supabaseClient";
 
 
 type Inputs = {
@@ -12,14 +13,37 @@ type Inputs = {
     noOfPpl: number,
     nameOfPersons: Array<string>,
     whoPaid: string,
-    noOfPerson: number,
     individualBill: number,
 };
 
 
+
 const BillAdd = () => {
     const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        console.log(data);
+
+        const { error } = await supabase
+            .from("billHistory")
+            .insert([{
+                moneySpentOn: data.spentOn,
+                howMuch: Number(data.howMuch),
+                when: data.when,
+                noOfPpl: Number(data.noOfPpl),
+                nameOfPpl: data.nameOfPersons,
+                whoPaid: data.whoPaid,
+                individualBill: Number(data.individualBill)
+            }]);
+
+        if (error) {
+            console.error("Error inserting data: ", error.message);
+            alert("Failed to add bill!");
+        } else {
+            console.log("Bill added: ", data);
+            alert("Bill added successfully!");
+        }
+    }
+
 
     const today = new Date().toISOString().split('T')[0];
 
@@ -37,8 +61,8 @@ const BillAdd = () => {
 
     useEffect(() => {
         if (noOfPerson > 0) {
-            const perPerson = howMuch/noOfPerson;
-            const rounded = Math.round(perPerson * 100)/100;
+            const perPerson = howMuch / noOfPerson;
+            const rounded = Math.round(perPerson * 100) / 100;
             setIndividualBill(rounded);
         }
     }, [howMuch, noOfPerson])
