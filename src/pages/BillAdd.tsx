@@ -21,8 +21,6 @@ type Inputs = {
 const BillAdd = () => {
     const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        console.log(data);
-
         const { error } = await supabase
             .from("billHistory")
             .insert([{
@@ -30,7 +28,7 @@ const BillAdd = () => {
                 howMuch: Number(data.howMuch),
                 when: data.when,
                 noOfPpl: Number(data.noOfPpl),
-                nameOfPpl: data.nameOfPersons,
+                nameOfPpl: data.nameOfPersons.join(", "),
                 whoPaid: data.whoPaid,
                 individualBill: Number(data.individualBill)
             }]);
