@@ -1,9 +1,14 @@
-import Hero from "./Hero"
+import BillHistory from "./BillHistory";
+import { Link } from "react-router";
+import Btn from "../comp/Btn"
 const home = () => {
 
   return (
-    <div className="">
-      <Hero />
+    <div className="mt-20 flex h-full flex-col justify-between">
+      <div className="">
+        <BillHistory />
+      </div>
+      <Link to="/billadd" className="w-full px-4 absolute bottom-4 sticky"><Btn title="+" /></Link>
     </div>
   )
 }
