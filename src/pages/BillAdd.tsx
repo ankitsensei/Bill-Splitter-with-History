@@ -19,7 +19,7 @@ type Inputs = {
 
 
 const BillAdd = () => {
-    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         const { error } = await supabase
             .from("billHistory")
@@ -38,7 +38,10 @@ const BillAdd = () => {
             alert("Failed to add bill!");
         } else {
             console.log("Bill added: ", data);
-            alert("Bill added successfully!");
+            alert("Bill added successfully!"); reset();
+            setnoOfPerson(0);
+            setNameOfPerson([]);
+            setIndividualBill(0);
         }
     }
 
