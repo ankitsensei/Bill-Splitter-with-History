@@ -35,8 +35,8 @@ const FetchData = () => {
 
     if (loading) return <p>Loading...</p>;
     return (
-        <div className='w-lvw sm:w-[450px] md:w-[450px] lg:w-[450px] px-4 flex flex-col gap-2'>
-            <h2 className='text-4xl pb-2 text-zinc-400'>Expenses</h2>
+        <div className='w-lvw sm:w-[450px] md:w-[450px] lg:w-[450px] px-4 pb-20 flex flex-col gap-2'>
+            <h2 className='text-2xl  pb-2 text-zinc-400'>Expenses</h2>
             {
                 data.map((item) => (
                     <ul className='border-zinc-800 border-1 p-2 rounded-2xl'>

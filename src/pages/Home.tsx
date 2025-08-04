@@ -4,7 +4,7 @@ import Btn from "../comp/Btn"
 const home = () => {
 
   return (
-    <div className="mt-20 flex h-full flex-col justify-between">
+    <div className="mt-10 flex h-full flex-col justify-between">
       <div className="">
         <BillHistory />
       </div>
