@@ -35,6 +35,21 @@ const FetchData = () => {
         fetchFromSupabase();
     }, [])
 
+    // Delete Handler
+    const deleteHandler = async (index: number) => {
+        const itemId = data[index].id;
+        const { error } = await supabase
+            .from('billHistory')
+            .delete()
+            .eq('id', itemId)
+
+        if (error) {
+            console.log("❌ Error deleting item: ", error.message);
+        } else {
+            console.log("✅ Item deleted successfully:");
+        }
+        setData(prev => prev.filter((_, i) => i !== index));
+    }
     // Settled Handler
     const settledHandler = async (index: number) => {
         const { id, ...itemWithoutId } = data[index];
@@ -49,6 +64,7 @@ const FetchData = () => {
         } else {
             console.log("✅ Data inserted successfully: ", insertedData);
         }
+        deleteHandler(index);
     };
 
 
