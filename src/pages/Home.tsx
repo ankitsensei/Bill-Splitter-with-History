@@ -4,7 +4,7 @@ import BillHistory from "./BillHistory";
 import { Link } from "react-router";
 import Btn from "../comp/Btn"
 import SettledFetchData from "../comp/SettledFetchData";
-const home = () => {
+const Home = () => {
   const [toggle, setToggle] = useState<boolean>(true);
 
   return (
@@ -35,4 +35,4 @@ const home = () => {
   )
 }
 
-export default home
+export default Home
