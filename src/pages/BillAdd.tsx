@@ -48,7 +48,7 @@ const BillAdd = () => {
 
     const today = new Date().toISOString().split('T')[0];
 
-    const [noOfPerson, setnoOfPerson] = useState(0);
+    const [noOfPerson, setnoOfPerson] = useState(2);
     const [nameOfPerson, setNameOfPerson] = useState<string[]>([]);
     const whoPaid = watch("whoPaid");
     const howMuch = watch("howMuch");
@@ -84,23 +84,52 @@ const BillAdd = () => {
                     <div>
                         <label htmlFor="">Money spent on?</label>
                         <input type="text" {...register("spentOn", { required: true })} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="Street food" />
-                        {errors.spentOn && <span>This field is required</span>}
+                        {errors.spentOn && <span className='text-red-500'>This field is required</span>}
                     </div>
                     <div className="flex gap-2">
                         <div>
                             <label htmlFor="">How much?</label>
-                            <input type="number" {...register("howMuch", { required: true })} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="300" />
-                            {errors.howMuch && <span>This field is required</span>}
+                            <input type="number" {...register("howMuch", {
+                                required: true,
+                                min: { value: 1, message: "Value cannot be less than 1" }
+                            })}
+                                className="border-zinc-600 border-2 p-2 rounded w-full outline-none no-spinner" placeholder="300" />
+                            {errors.howMuch && <span className='text-red-500'>{errors.howMuch.message || "This is required field"}</span>}
                         </div>
                         <div>
-                            <label htmlFor="">When?</label>
-                            <input type="date" defaultValue={today} {...register("when", { required: true })} className="border-zinc-600  border-2 p-2 rounded w-full outline-none" />
-                            {errors.when && <span>This field is required</span>}
+                            <label htmlFor="when">When?</label>
+                            <input
+                                type="date"
+                                id="when"
+                                defaultValue={today}
+                                min="1900-01-01"
+                                max={today}
+                                {...register("when", {
+                                    required: "This field is required",
+                                    validate: (value) => {
+                                        const inputDate = new Date(value);
+                                        const minDate = new Date("1900-01-01");
+                                        const maxDate = new Date(); // today
+                                        return (
+                                            inputDate >= minDate && inputDate <= maxDate ||
+                                            "Date must be between 01-01-1990 and today"
+                                        );
+                                    },
+                                })}
+                                className="border-zinc-600 border-2 p-2 rounded w-full outline-none"
+                            />
+                            {errors.when && (
+                                <span className="text-red-500">{errors.when.message}</span>
+                            )}
                         </div>
+
                         <div>
                             <label htmlFor="">No. of ppl?</label>
-                            <input type="number" {...register("noOfPpl", { required: true })} value={noOfPerson} onChange={(e) => setnoOfPerson(parseInt(e.target.value))} className="border-zinc-600 border-2 p-2 rounded w-full outline-none" placeholder="3" />
-                            {errors.noOfPpl && <span>This field is required</span>}
+                            <input
+                                type="number" {...register("noOfPpl", { required: true, min: { value: 2, message: "At least 2 persons" } })}
+                                value={noOfPerson} onChange={(e) => setnoOfPerson(parseInt(e.target.value))} className="border-zinc-600 border-2 p-2 rounded w-full outline-none no-spinner" placeholder="3"
+                            />
+                            {errors.noOfPpl && <span className='text-red-500'>{errors.noOfPpl.message}</span>}
                         </div>
                     </div>
 
