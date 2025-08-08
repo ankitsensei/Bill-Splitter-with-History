@@ -107,7 +107,8 @@ const BillAdd = () => {
                                 type="number"
                                 {...register("howMuch", {
                                     required: true,
-                                    min: { value: 1, message: "Value cannot be less than 1" }
+                                    min: { value: 1, message: "Value cannot be less than 1" },
+                                    max: { value: 10000000, message: "Value cannot be more than 10 Million" }
                                 })}
                                 className="border-zinc-600 border-2 p-2 rounded w-full outline-none no-spinner"
                                 placeholder="300"
