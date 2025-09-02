@@ -27,6 +27,9 @@ const BillAdd = () => {
         control
     } = useForm<Inputs>({
         mode: "onChange", // real-time validation
+        defaultValues:{
+            noOfPpl: 2,
+        }
     });
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -48,7 +51,7 @@ const BillAdd = () => {
         } else {
             alert("Bill added successfully!");
             reset();
-            setnoOfPerson(0);
+            setnoOfPerson(2);
             setNameOfPerson([]);
             setIndividualBill(0);
         }
@@ -150,7 +153,7 @@ const BillAdd = () => {
                                 control={control}
                                 rules={{
                                     required: "This field is required",
-                                    min: { value: 1, message: "At least 1 person required" },
+                                    min: { value: 2, message: "At least 2 person required" },
                                 }}
                                 render={({ field }) => (
                                     <input
